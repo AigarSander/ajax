@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(e) {
+            $('#submit').submit(function() {
+                var number = $('input[name="number"]');
+                var data = number.val();
+
+                $.ajax({
+                    url: "index.php",
+                    type: "GET",
+                    data: 'output=' + data,
+                    cache: false,
+                    success: function(data) {
+                        $('#output').html(data);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+<form id=submit action="">
+    <input id="number" name="number" type="text" />
+    <input name="submit" type="submit" />
+</form>
+
+<div id="output"></div>
+</body>
+</html>
